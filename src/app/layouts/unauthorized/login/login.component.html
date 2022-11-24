@@ -1,0 +1,54 @@
+<mat-card>
+  <mat-card-title
+    ><img src="assets\LOGO-VSD.png" alt="" srcset="" />
+  </mat-card-title>
+  <mat-card-content>
+    <ng-container *ngIf="state$ | async as vm">
+      <form [formGroup]="loginForm" class="loginForm">
+        <div class="container">
+          <span *ngIf="vm.hasError">Lỗi kìa</span>
+          <div>
+            <mat-form-field>
+              <input
+                matInput
+                placeholder="Tên đăng nhập"
+                formControlName="userName"
+              />
+            </mat-form-field>
+          </div>
+          <div class="mt-top-2">
+            <mat-form-field>
+              <input
+                matInput
+                type="password"
+                placeholder="Mật khẩu"
+                formControlName="password"
+              />
+              <mat-error *ngIf="!loginForm.get('password')?.errors?.required">
+                Password phải nhiều hơn 8 ký tự và phải có số và ký tự đặc biệt
+              </mat-error>
+              <mat-error
+                *ngIf="
+                  loginForm.get('password')?.invalid &&
+                  (loginForm.get('password')?.dirty ||
+                    loginForm.get('password')?.touched) &&
+                  loginForm.get('password')?.errors?.required
+                "
+              >
+                Password không được trống
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <button
+          [disabled]="!loginForm.valid"
+          mat-raised-button
+          color="primary"
+          (click)="onSubmit.next()"
+        >
+          Đăng nhập
+        </button>
+      </form>
+    </ng-container>
+  </mat-card-content>
+</mat-card>

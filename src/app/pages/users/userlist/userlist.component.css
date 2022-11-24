@@ -1,0 +1,19 @@
+table {
+  width: 100%;
+}
+
+.mat-mdc-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.headerButton {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+}
+
+.headerButton button {
+  background-color: #26c6da;
+  color: white;
+}
